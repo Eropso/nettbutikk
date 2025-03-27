@@ -1,6 +1,12 @@
 <?php
 session_start();
 include("database.php");
+
+$sql = "SELECT title, price, img FROM products";
+$stmt = $conn->query($sql);
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
 ?>
 
 
@@ -9,7 +15,7 @@ include("database.php");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Homepage</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -22,7 +28,7 @@ include("database.php");
         </ul>
         
         <ul>
-            <li><a class="erobank-logo" href="index.php"><p>Erobank</p></a></li>
+            <li><a class="erobank-logo" href="index.php"><p>Erosho</p></a></li>
             <li class="hideOnMobile"><a href="dashboard.php">Dashboard</a></li>
             <li class="hideOnMobile"><a href="#">FAQ</a></li>
 
@@ -44,13 +50,18 @@ include("database.php");
     </nav>
 
 
+
     
+    <div class="product-catalog">
+        <?php  foreach ($result as $product):  ?>
+            <a href="product.php?id=<?php echo $product['id']; ?>" class="product-container">
+                <img src="<?php echo $product['img'] ?>" alt="">
+                <h1><?php echo $product['title']; ?></h1>
 
-
-    <div class="hero">
-
-
+            </a>
+        <?php endforeach; ?>
     </div>
+
 
 
 

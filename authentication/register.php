@@ -5,7 +5,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-require 'vendor/autoload.php';
+require '..\..\phpmailer\vendor\autoload.php';
 
 
 
@@ -21,41 +21,57 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         return;
     }
     else {
-        $sql = "INSERT INTO users (first_name, last_name, email, password) VALUES (:first_name, :last_name, :email, :password)";
+        $sql = "SELECT id, email, first_name, last_name, password, role FROM users WHERE email = :email;";
         $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':first_name', $first_name);
-        $stmt->bindParam(':last_name', $last_name);
         $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':password', $password);
         $stmt->execute();
-
-        // Send OTP via email using PHPMailer
-        $mail = new PHPMailer(true);
-        try {
-            $mail->isSMTP();
-            $mail->Host = 'smtp.gmail.com';
-            $mail->SMTPAuth = true;
-            $mail->Username = 'phpkuben@gmail.com';
-            $mail->Password = 'srnq cqiy dqzu kyfl';
-            $mail->SMTPSecure = 'tls';
-            $mail->Port = 587;
-
-            $mail->setFrom('from@example.com', 'EroZone');
-            $mail->addAddress($email);
-            $mail->isHTML(true);
-            $mail->Subject = 'Verification Code for EroZone Registration';
-            $mail->Body = "Your Verification Code is <b>$otp</b>";
-            $mail->AltBody = "Your Verification Code is $otp";
-
-            $mail->send();
-
-            // Redirect to OTP verification page
-            header("Location: verify_otp.php");
-            exit();
-        } catch (Exception $e) {
-            echo "Error: {$mail->ErrorInfo}";
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($user){
+            echo 'User already exists';
+            return;
         }
+        else {
+            $_SESSION['new_user'] = [   
+                'first_name' => $first_name,
+                'last_name' => $last_name,
+                'email' => $email,
+                'password' => password_hash($password, PASSWORD_DEFAULT),   
+            ];
 
+            $_SESSION['is_new_user'] = true; // Set session for new user registration
+
+            // Generate verification code and send it
+            $verification_code = rand(100000, 999999);
+            $_SESSION['verification_code'] = $verification_code;
+    
+    
+            // Send Verification Code via email using PHPMailer
+            $mail = new PHPMailer(true);
+            try {
+                $mail->isSMTP();
+                $mail->Host = 'smtp.gmail.com';
+                $mail->SMTPAuth = true;
+                $mail->Username = 'phpkuben@gmail.com';
+                $mail->Password = 'srnq cqiy dqzu kyfl';
+                $mail->SMTPSecure = 'tls';
+                $mail->Port = 587;
+    
+                $mail->setFrom('from@example.com', 'Eroshop');
+                $mail->addAddress($email);
+                $mail->isHTML(true);
+                $mail->Subject = 'Verification Code for Erosho Registration';
+                $mail->Body = "Your Verification Code is <b>$verification_code</b>";
+                $mail->AltBody = "Your Verification Code is $verification_code";
+    
+                $mail->send();
+    
+                // Redirect to verification page
+                header("Location: verification.php");
+                exit();
+            } catch (Exception $e) {
+                echo "Error: {$mail->ErrorInfo}";
+            }
+        }
     }
 }
 
