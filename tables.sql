@@ -24,5 +24,5 @@ CREATE TABLE `products` (
 
 
 INSERT INTO `products` (`id`, `title`, `description`, `price`, `rrp`, `quantity`, `img`, `date_added`) VALUES
-(1, 'T-shirt', '<p>High quality Cotton. Thick material GSM 500. Made in Italy.</p>', '29.99', '10.00', 10, 'tshirt.jpg', '2025-01-01 00:00:00'),
-(2, 'Sweatpants', '<p>Cotton poly blend. Made in Italy. Minimum Wage Workers.</p>', '20.99', '8.99', 34, 'sweatpants.jpg', '2025-01-01 00:00:00')
+(1, 'T-shirt', '<p>High quality Cotton. Thick material GSM 500. Made in Italy.</p>', '29.99', '10.00', 10, 'images/tshirt.png', '2025-01-01 00:00:00'),
+(2, 'Sweatpants', '<p>Cotton poly blend. Made in Italy. Minimum Wage Workers.</p>', '20.99', '8.99', 34, 'images/sweatpants.webp', '2025-01-01 00:00:00')
