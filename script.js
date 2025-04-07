@@ -24,3 +24,15 @@ function hideSidebar() {
     const sidebar = document.querySelector('.sidebar');
     sidebar.style.display = 'none';
 }
+
+
+
+function changeQuantity(amount) {
+    const quantityInput = document.getElementById('quantity');
+    let currentValue = parseInt(quantityInput.value);
+
+    // Ensure the value doesn't go below 1
+    if (currentValue + amount >= 1) {
+        quantityInput.value = currentValue + amount;
+    }
+}

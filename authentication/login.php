@@ -5,7 +5,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-require '..\..\phpmailer\vendor\autoload.php';
+require '..\vendor\autoload.php';
 
 
 
@@ -20,7 +20,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     }
     else {
         $sql = "SELECT id, email, first_name, last_name, password, role FROM users WHERE email = :email;";
-        $stmt = $pdo->prepare($sql);
+        $stmt = $conn->prepare($sql);
         $stmt->bindParam(':email', $email);
         $stmt->execute();
         $user = $stmt->fetch(PDO::FETCH_ASSOC);

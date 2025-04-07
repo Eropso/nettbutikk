@@ -21,7 +21,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $password = $_SESSION['new_user']['password'];
 
                 $sql = "INSERT INTO users (first_name, last_name, email, password) VALUES (:first_name, :last_name, :email, :password)";
-                $stmt = $pdo->prepare($sql);
+                $stmt = $conn->prepare($sql);
                 $stmt->bindParam(':first_name', $first_name);
                 $stmt->bindParam(':last_name', $last_name);
                 $stmt->bindParam(':email', $email);
