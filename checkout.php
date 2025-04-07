@@ -1,5 +1,5 @@
 <?php
-require 'vendor\autoload.php';
+require 'vendor/autoload.php';
 
 session_start();
 
@@ -28,8 +28,8 @@ foreach ($cart_items as $item) {
 // Create the checkout session
 $checkout_session = \Stripe\Checkout\Session::create([
     "mode" => "payment",
-    "success_url" => "http://localhost/nettbutikk/success.php",
-    "cancel_url" => "http://localhost/nettbutikk/index.php",
+    "success_url" => "http://10.100.10.134/nettbutikk/success.php",
+    "cancel_url" => "http://10.100.10.134/nettbutikk/index.php",
     "line_items" => $line_items,
 ]);
 
