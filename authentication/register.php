@@ -7,7 +7,8 @@ use PHPMailer\PHPMailer\Exception;
 
 require '../vendor/autoload.php';
 
-
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 
 $first_name = filter_input(INPUT_POST, 'first_name', FILTER_SANITIZE_STRING);
 $last_name = filter_input(INPUT_POST, 'last_name', FILTER_SANITIZE_STRING);
@@ -51,12 +52,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $mail->isSMTP();
                 $mail->Host = 'smtp.gmail.com';
                 $mail->SMTPAuth = true;
-                $mail->Username = 'phpkuben@gmail.com';
-                $mail->Password = 'srnq cqiy dqzu kyfl';
+                $mail->Username = $_ENV['EMAIL_USERNAME'];
+                $mail->Password = $_ENV['EMAIL_PASSWORD'];
                 $mail->SMTPSecure = 'tls';
                 $mail->Port = 587;
     
-                $mail->setFrom('from@example.com', 'Eroshop');
+                $mail->setFrom($_ENV['EMAIL_USERNAME'], 'Eroshop');
                 $mail->addAddress($email);
                 $mail->isHTML(true);
                 $mail->Subject = 'Verification Code for Erosho Registration';

@@ -3,7 +3,13 @@ require 'vendor/autoload.php';
 
 session_start();
 
-$stripe_secret_key = "sk_test_51R9NB7FRlyPBVzYQWq5Zr6lHVjN7unlY0aeVavjMW0IhMJtjgIwGTaBF8HPvRZLnvguqgZ4iEEMuD4NoOD15gPhF00AJfVC15Q";
+// Load environment variables
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+// Use the secret key from the environment
+$stripe_secret_key = $_ENV['STRIPE_SECRET_KEY'];
+
 
 \Stripe\Stripe::setApiKey($stripe_secret_key);
 
