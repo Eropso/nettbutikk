@@ -37,6 +37,9 @@ $checkout_session = \Stripe\Checkout\Session::create([
     "success_url" => "http://10.100.10.134/success.php",
     "cancel_url" => "http://10.100.10.134/index.php",
     "line_items" => $line_items,
+    "metadata" => [
+        "user_id" => $_SESSION['user']['id'], // Pass the user ID to the webhook
+    ],
 ]);
 
 http_response_code(303);
