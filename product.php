@@ -26,7 +26,7 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
         <ul class="sidebar">
             <li onclick=hideSidebar()><a href="#"><img src="images/close.svg" alt=""></a></li>
             <li><a href="about.php">About</a></li>
-            <li><a href="#">FAQ</a></li>
+            <li><a href="faq.php">FAQ</a></li>
             <li><a href="mailto:phpkuben@gmail.com">Contact</a></li>
         </ul>
         
@@ -79,7 +79,7 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
                             <img src="images/add.svg" alt="Increase" id="increase-quantity" onclick="changeQuantity(1)">
                         </div>
                     </div>
-                    <button class="purchase" type="submit">Add to Cart</button>
+                    <button id="purchase" type="submit">Add to Cart</button>
                 </form>
             </div>
 

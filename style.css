@@ -316,3 +316,60 @@ nav li:first-child {
 
 }
 
+
+
+/* User Setting */
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.user-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.all-users {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10vh;
+}
+
+
+
+
+
+/*  FAQ  */
+.faq-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.faq-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+}
+
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 300px;
+}

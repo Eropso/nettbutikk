@@ -30,7 +30,7 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <ul>
             <li><a class="erobank-logo" href="index.php"><p>Erosho</p></a></li>
             <li class="hideOnMobile"><a href="about.php">About</a></li>
-            <li class="hideOnMobile"><a href="#">FAQ</a></li>
+            <li class="hideOnMobile"><a href="faq.php">FAQ</a></li>
 
             <!-- If logged in show profile else show login -->
             <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true): ?>
@@ -67,7 +67,18 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 
+    <footer>
+        <div class="footer-content">
+            <h3>
+                Get 10% off your next purchase. Subscribe to our newsletter.
+            </h3>
+            <form action="process_newsletter.php" method="POST">
+                <input name="email" type="email" placeholder="E-mail">
+                <button>SUBSCRIBE</button>
+            </form>
+        </div>
 
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>
