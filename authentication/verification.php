@@ -46,8 +46,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     unset($_SESSION['new_user']);
                     unset($_SESSION['is_new_user']);
 
-                    header('Location: ../index.php');
-                    exit();
+                    
+                    if (isset($_SESSION['login-from-cart'])){
+                        header("Location: ../cart.php");
+                        exit();
+                    }
+                    else{
+                        header('Location: ../index.php');
+                        exit();
+                    }
+
                 } else {
                     echo 'Error creating user';
                 }
@@ -74,8 +82,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     unset($_SESSION['email']);
                     unset($_SESSION['is_new_user']);
 
-                    header('Location: ../index.php');
-                    exit();
+
+                    if (isset($_SESSION['login-from-cart'])){
+                        header("Location: ../cart.php");
+                        exit();
+                    }
+                    else{
+                        header('Location: ../index.php');
+                        exit();
+                    }
+
                 } else {
                     echo 'User not found';
                 }

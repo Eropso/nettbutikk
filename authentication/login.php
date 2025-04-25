@@ -54,6 +54,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $mail->send();
     
                 // Redirect to verification page
+
                 header("Location: verification.php");
                 exit();
             } catch (Exception $e) {

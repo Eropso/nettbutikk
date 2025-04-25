@@ -80,7 +80,12 @@ if (isset($_GET['remove'])) {
             echo $total;
             ?>
         </p>
-        <a href="checkout.php">Proceed to Checkout</a>
+        <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true): ?>
+            <?php $_SESSION['login-from-cart'] = true; ?>
+            <a href="authentication/login.php">Proceed to Checkout</a>
+        <?php else: ?>
+            <a href="checkout.php">Proceed to Checkout</a>
+        <?php endif; ?>
     <?php else: ?>
         <p>Your cart is empty.</p>
     <?php endif; ?>
