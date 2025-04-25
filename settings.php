@@ -8,13 +8,18 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     exit();
 }
 
+if (!isset($_SESSION['user']['id'])) { // Check for user['id']
+    echo "User ID is not set in the session.";
+    exit();
+}
 
-$id = $_SESSION['user']['id'];
-$sql = "SELECT id, email, first_name, last_name FROM users WHERE id = :id";
+$id = $_SESSION['user']['id']; // Use user['id'] here
+$sql = "SELECT id, email, first_name, last_name, role FROM users WHERE id = :id";
 $stmt = $conn->prepare($sql);
 $stmt->bindParam(':id', $id);
 $stmt->execute();
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
 
 if(isset($_POST["update"])){
     $first_name = $_POST['first-name'];
@@ -30,15 +35,17 @@ if(isset($_POST["update"])){
         $stmt->bindParam(':first_name', $first_name);
         $stmt->bindParam(':last_name', $last_name);
         $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':id', $user['id']);
+        $stmt->bindParam(':id', $id);
 
         
         if ($stmt->execute()) {
             // Update session data
             $_SESSION['user'] = [
+                'id' => $id,
                 'email' => $email,
                 'first_name' => $first_name,
                 'last_name' => $last_name,
+                'role' => $user['role']
             ];
 
             echo "Profile updated successfully!";
