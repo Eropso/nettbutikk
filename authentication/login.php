@@ -7,8 +7,6 @@ use PHPMailer\PHPMailer\Exception;
 
 require '../vendor/autoload.php';
 
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
-$dotenv->load();
 
 $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
 $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);

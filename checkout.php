@@ -3,9 +3,7 @@ require 'vendor/autoload.php';
 
 session_start();
 
-// Load environment variables
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
+
 
 // Use the secret key from the environment
 $stripe_secret_key = $_ENV['STRIPE_SECRET_KEY'];
