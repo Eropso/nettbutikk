@@ -2,6 +2,10 @@
 require 'vendor/autoload.php';
 
 // Load environment variables
+if (file_exists(__DIR__ . '/.env')) {
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+    $dotenv->load();
+}
 
 
 $stripe_secret_key = $_ENV['STRIPE_SECRET_KEY'];
