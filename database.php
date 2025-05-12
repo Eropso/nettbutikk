@@ -37,6 +37,7 @@ if ($isProduction) {
     }
 
     $options[PDO::MYSQL_ATTR_SSL_CA] = $certPath;
+    $options[PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT] = false; 
     echo "SSL enabled (production)<br>";
 } else {
     echo "Running in local environment - SSL not used<br>";
