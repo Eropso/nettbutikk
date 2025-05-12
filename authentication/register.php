@@ -11,10 +11,10 @@ if (file_exists(__DIR__ . '/.env')) {
     $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
     $dotenv->load();
 }
-$first_name = filter_input(INPUT_POST, 'first_name', FILTER_SANITIZE_STRING);
-$last_name = filter_input(INPUT_POST, 'last_name', FILTER_SANITIZE_STRING);
+$first_name = filter_input(INPUT_POST, 'first_name');
+$last_name = filter_input(INPUT_POST, 'last_name');
 $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-$password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+$password = filter_input(INPUT_POST, 'password');
 
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
