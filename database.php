@@ -13,7 +13,7 @@ $password = $_ENV['DB_PASSWORD'];
 $dbname = $_ENV['DB_DBNAME'];
 $certPath = __DIR__ . '/ssl/BaltimoreCyberTrustRoot.crt.pem';
 
-if (!file_exists($certPath)) {
+if (file_exists($certPath)) {
     die("SSL cert file not found at $certPath");
 }
 
