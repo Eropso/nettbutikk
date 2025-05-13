@@ -55,8 +55,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $mail->SMTPAuth = true;
                 $mail->Username = $_ENV['EMAIL_USERNAME'];
                 $mail->Password = $_ENV['EMAIL_PASSWORD'];
-                $mail->SMTPSecure = 'tls';
-                $mail->Port = 587;
+                $mail->SMTPSecure = 'ssl';
+                $mail->Port = 465;
     
                 $mail->setFrom($_ENV['EMAIL_USERNAME'], 'Eroshop');
                 $mail->addAddress($email);
