@@ -16,6 +16,10 @@ $last_name = filter_input(INPUT_POST, 'last_name');
 $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
 $password = filter_input(INPUT_POST, 'password');
 
+error_log("EMAIL_USERNAME: " . $_ENV['EMAIL_USERNAME']);
+error_log("EMAIL_PASSWORD: " . $_ENV['EMAIL_PASSWORD']);
+
+
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     if(empty($first_name) || empty($last_name) || empty($email) || empty($password)){
@@ -56,8 +60,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $mail->SMTPAuth = true;
                 $mail->Username = $_ENV['EMAIL_USERNAME'];
                 $mail->Password = $_ENV['EMAIL_PASSWORD'];
-                $mail->SMTPSecure = 'ssl';
-                $mail->Port = 465;
+                $mail->SMTPSecure = 'tls';
+                $mail->Port = 587;
     
                 $mail->setFrom($_ENV['EMAIL_USERNAME'], 'Eroshop');
                 $mail->addAddress($email);
