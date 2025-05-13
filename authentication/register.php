@@ -16,9 +16,6 @@ $last_name = filter_input(INPUT_POST, 'last_name');
 $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
 $password = filter_input(INPUT_POST, 'password');
 
-error_log("EMAIL_USERNAME: " . $_ENV['EMAIL_USERNAME']);
-error_log("EMAIL_PASSWORD: " . $_ENV['EMAIL_PASSWORD']);
-
 
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -53,7 +50,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     
             // Send Verification Code via email using PHPMailer
             $mail = new PHPMailer(true);
-            $mail->SMTPDebug = 3;
             try {
                 $mail->isSMTP();
                 $mail->Host = 'smtp.gmail.com';
