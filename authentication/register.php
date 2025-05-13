@@ -49,6 +49,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     
             // Send Verification Code via email using PHPMailer
             $mail = new PHPMailer(true);
+            $mail->SMTPDebug = 3;
             try {
                 $mail->isSMTP();
                 $mail->Host = 'smtp.gmail.com';
