@@ -53,12 +53,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $mail->isSMTP();
                 $mail->Host = 'smtp.gmail.com';
                 $mail->SMTPAuth = true;
-                $mail->Username = $_ENV['EMAIL_USERNAME'];
-                $mail->Password = $_ENV['EMAIL_PASSWORD'];
+                $mail->Username = getenv('EMAIL_USERNAME');
+                $mail->Password = getenv('EMAIL_PASSWORD');
                 $mail->SMTPSecure = 'tls';
                 $mail->Port = 587;
     
-                $mail->setFrom($_ENV['EMAIL_USERNAME'], 'Eroshop');
+                $mail->setFrom(getenv('EMAIL_USERNAME'), 'Eroshop');
                 $mail->addAddress($email);
                 $mail->isHTML(true);
                 $mail->Subject = 'Verification Code for Erosho Registration';
