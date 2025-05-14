@@ -1,6 +1,5 @@
 <?php
 require 'vendor/autoload.php';
-
 session_start();
 
 if (file_exists(__DIR__ . '/.env')) {
@@ -8,17 +7,12 @@ if (file_exists(__DIR__ . '/.env')) {
     $dotenv->load();
 }
 
-// Use the secret key from the environment
 $stripe_secret_key = $_ENV['STRIPE_SECRET_KEY'];
-
-
 \Stripe\Stripe::setApiKey($stripe_secret_key);
 
 $cart_items = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
-
 $line_items = [];
 
-// Loop through cart items to build the line_items array
 foreach ($cart_items as $item) {
     $line_items[] = [
         "quantity" => $item['quantity'],
@@ -32,17 +26,29 @@ foreach ($cart_items as $item) {
     ];
 }
 
-// Create the checkout session
+// Pass cart as JSON in metadata
+$cart_metadata = [];
+foreach ($_SESSION['cart'] as $product_id => $item) {
+    $cart_metadata[] = [
+        'product_id' => $product_id,
+        'title' => $item['title'],
+        'price' => $item['price'],
+        'quantity' => $item['quantity']
+    ];
+}
+
 $checkout_session = \Stripe\Checkout\Session::create([
     "mode" => "payment",
-    "success_url" => "http://10.100.10.134/success.php",
-    "cancel_url" => "http://10.100.10.134/index.php",
+    "success_url" => "https://erosho-web.azurewebsites.net/success.php",
+    "cancel_url" => "https://erosho-web.azurewebsites.net/index.php",
     "line_items" => $line_items,
     "metadata" => [
-        "user_id" => $_SESSION['user']['id'], // Pass the user ID to the webhook
+        "user_id" => $_SESSION['user']['id'],
+        "cart" => json_encode($cart_metadata)
     ],
 ]);
 
 http_response_code(303);
 header("Location: " . $checkout_session->url);
+exit();
 ?>
