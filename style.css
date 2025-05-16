@@ -26,6 +26,9 @@ nav {
     display: flex;
     align-items: center;
     height: 70px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .input-container {
@@ -140,12 +143,11 @@ nav li:first-child {
     text-decoration: none;
     display: block;
     transition: background-color 0.4s;
-    border-radius: 5px;
-
 }
 
 .dropdown-content a:hover {
-    background-color: #2f55ff;
+    background-color: rgb(152, 16, 255);
+    color: white;
 }
 
 .show {
@@ -202,22 +204,42 @@ nav li:first-child {
 
 /* Homepage */
 .hero-container {
-    margin-top: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
 
-#erosho-title {
-    font-size: 6em;
-    font-weight: 900;
-    margin: 0;
-    padding: 0;
+.hero-content img {
+    width: 100vw;
+    height: 1000px;
+    object-fit: cover;
+    display: block;
 }
 
 
 
+.hero-btn {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 5px;
+    padding: 18px 48px;
+    background: rgb(152, 16, 255);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+    transition: background 0.3s;
+}
+
+.hero-btn:hover {
+    background: rgb(177, 75, 255);
+}
 
 
 
@@ -228,6 +250,9 @@ nav li:first-child {
     justify-content: center;
     align-items: center;
     gap: 40px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+
 }
 
 .product-container {
@@ -241,7 +266,7 @@ nav li:first-child {
 
 
 .product-container img {
-    width: 300px;
+    width: 600px;
     height: auto;
     filter: drop-shadow(0 0 5px white);
 }
@@ -372,4 +397,84 @@ footer {
     justify-content: center;
     flex-direction: column;
     width: 300px;
+}
+
+
+
+/* Authentication */
+
+.register_form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: rgba(0,0,0,0.7);
+}
+
+.register_inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    background: #181818;
+    padding: 40px 32px;
+    border-radius: 16px;
+    box-shadow: 0 4px 32px rgba(152,16,255,0.15);
+    min-width: 320px;
+}
+
+.register_inputs label {
+    font-size: 1.1rem;
+    color: #fff;
+    margin-bottom: 4px;
+}
+
+.register_inputs input{
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: 1px solid #444;
+    background: #222;
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+    transition: border 0.2s;
+}
+
+.register_inputs input:focus{
+    border: 1.5px solid rgb(152, 16, 255);
+}
+
+.register_inputs input[type="submit"] {
+    margin-top: 12px;
+    padding: 12px 0;
+    background: rgb(152, 16, 255);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.register_inputs input[type="submit"]:hover {
+    background: rgb(177, 75, 255);
+}
+
+.register-link {
+    
+    margin-top: 10px;
+    padding: 12px 0;
+    background: transparent;
+    color: rgb(152, 16, 255);
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.3s, color 0.3s;
+}
+
+.register-link:hover {
+    color: rgb(177, 75, 255);
 }

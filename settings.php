@@ -48,8 +48,8 @@ if(isset($_POST["update"])){
                 'role' => $user['role']
             ];
 
-            echo "Profile updated successfully!";
             header("Location: settings.php");
+            exit();
         } else {
             echo "Error updating profile";
         }

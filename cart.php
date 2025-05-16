@@ -61,13 +61,20 @@ if (isset($_GET['remove'])) {
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($_SESSION['cart'] as $ixd => $item): ?>
+                <?php foreach ($_SESSION['cart'] as $product_id => $item): ?>
                     <tr>
                         <td><?php echo $item['title']; ?></td>
                         <td>$<?php echo $item['price']; ?></td>
-                        <td id="quantity-container"><img src="images/remove.svg" alt="" onclick="changeQuantity(-1)"><input type="text" name="quantity" id="quantity" value="<?php echo $item['quantity']; ?>" min="1"><img src="images/add.svg" alt="" onclick="changeQuantity(1)"></td>
+
+                        <td id="quantity-container">
+                            <img src="images/remove.svg" alt="" onclick="changeQuantity('<?php echo $product_id; ?>', -1)">
+                            <input type="text" name="quantity_<?php echo $product_id; ?>" id="quantity_<?php echo $product_id; ?>" value="<?php echo $item['quantity']; ?>" min="1" readonly>
+                            <img src="images/add.svg" alt="" onclick="changeQuantity('<?php echo $product_id; ?>', 1)">
+                        </td>
+
                         <td>$<?php echo $item['price'] * $item['quantity']; ?></td>
-                        <td><a href="cart.php?remove=<?php echo $ixd; ?>">Remove</a></td>                    </tr>
+                        <td><a href="cart.php?remove=<?php echo $product_id; ?>">Remove</a></td>                    
+                    </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>

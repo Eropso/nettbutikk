@@ -5,7 +5,7 @@
 
 ## Beskrivelse
 
-Erosho er et nettbutikk utviklet for å selge bedriften sine produkter til kunder. Applikasjonen gir brukerne muligheten til å legge til klær i handlekurven og fullføre kjøpene sine. Dette verktøyet er ideelt for både nye og erfarne kuner som ønsker en enkel og brukervennlig handleopplevelse.
+Erosho er et nettbutikk utviklet for å selge bedriften sine produkter til kunder. Applikasjonen gir brukerne muligheten til å legge til klær i handlekurven og fullføre kjøpene sine. Dette verktøyet er ideelt for både nye og erfarne kunder som ønsker en enkel og brukervennlig handleopplevelse.
 
 ## Funksjoner
 
@@ -33,7 +33,11 @@ Erosho er et nettbutikk utviklet for å selge bedriften sine produkter til kunde
 4. **Administrer profilen din**: Oppdater personlig informasjon via innstillingene.
 
 
-
+## Bruk
+- Nettsiden er hostet med Apache lokalt på en Raspberry Pi installert med ubuntu
+- For ny oppsett av Raspberry Pi følg stegene 1-6 i Readme https://github.com/Eropso/installasjonsveiledning
+- Nettsiden er public https://eropso.com
+- Det er brukt Azure for
 
 ## Kontakt
 

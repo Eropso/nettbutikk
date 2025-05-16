@@ -22,22 +22,20 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <nav>
         <ul class="sidebar">
             <li onclick=hideSidebar()><a href="#"><img src="images/close.svg" alt=""></a></li>
-            <li><a href="about.php">About</a></li>
-            <li><a href="#">FAQ</a></li>
+            <li><a href="faq.php">FAQ</a></li>
             <li><a href="mailto:phpkuben@gmail.com">Contact</a></li>
         </ul>
         
         <ul>
-            <li><a class="erobank-logo" href="index.php"><p>Erosho</p></a></li>
-            <li class="hideOnMobile"><a href="about.php">About</a></li>
+            <li><a href="index.php"><p>Erosho</p></a></li>
             <li class="hideOnMobile"><a href="faq.php">FAQ</a></li>
 
-            <!-- If logged in show profile else show login -->
+            <!-- If logged in show profile, else show login -->
             <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true): ?>
                 <div class="dropdown">
                     <img class="profile" src="images/person_white.svg" alt="defaultprofile" onclick="myFunction()">
                     <div id="myDropdown" class="dropdown-content">
-                        <?php $role = $_SESSION['user']['role']; if($role == 'admin'){echo '<a href="admin.php">Admin Panel</a>';} ?>
+                        <?php $role = $_SESSION['user']['role']; if($role == 'admin'){echo '<a href="admin/admin.php">Admin Panel</a>';} ?>
                         <a href="settings.php"><img src="images/settings.svg" alt="">Settings</a>
                         <a href="authentication/logout.php" class="logout-button"><img src="images/logout.svg" alt="">Logout</a>
                     </div>
@@ -45,12 +43,18 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <?php else: ?>
                 <a href="authentication/login.php" class="login-button"><img src="images/person_white.svg" alt="">Login</a>
             <?php endif; ?>            
-            <li class="menu-button" onclick=showSidebar()><a href="#"><img src="images/menu.svg" alt=""></a></li>
             <li><a href="cart.php"><img src="images/shopping_bag.svg" alt=""></a></li>
+            <li class="menu-button" onclick=showSidebar()><a href="#"><img src="images/menu.svg" alt=""></a></li>
 
         </ul>
     </nav>
+    
+    <div class="hero-container">
+        <div class="hero-content">
+            <img src="images/hero.png" alt="">
+        </div>
 
+    </div>
 
 
     
@@ -59,7 +63,7 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <a href="product.php?id=<?php echo $product['id']; ?>" class="product-container">
                 <img src="<?php echo $product['img'] ?>" alt="">
                 <h1><?php echo $product['title']; ?></h1>
-
+                <a href="#products" class="hero-btn">Shop Now</a>
             </a>
         <?php endforeach; ?>
         
@@ -67,18 +71,7 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 
-    <footer>
-        <div class="footer-content">
-            <h3>
-                Get 10% off your next purchase. Subscribe to our newsletter.
-            </h3>
-            <form action="process_newsletter.php" method="POST">
-                <input name="email" type="email" placeholder="E-mail">
-                <button>SUBSCRIBE</button>
-            </form>
-        </div>
 
-    </footer>
     <script src="script.js"></script>
 </body>
 </html>

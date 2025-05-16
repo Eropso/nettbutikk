@@ -27,12 +27,20 @@ function hideSidebar() {
 
 
 
-function changeQuantity(amount) {
-    const quantityInput = document.getElementById('quantity');
-    let currentValue = parseInt(quantityInput.value);
-
-    // Ensure the value doesn't go below 1
-    if (currentValue + amount >= 1) {
-        quantityInput.value = currentValue + amount;
+function changeQuantity(idOrAmount, amount) {
+    // Hvis bare ett argument: bruk på produktsiden
+    if (amount === undefined) {
+        var quantityInput = document.getElementById('quantity');
+        var currentValue = parseInt(quantityInput.value);
+        if (currentValue + idOrAmount >= 1) {
+            quantityInput.value = currentValue + idOrAmount;
+        }
+    } else {
+        // Handlekurv: id og amount
+        var quantityInput = document.getElementById('quantity_' + idOrAmount);
+        var currentValue = parseInt(quantityInput.value);
+        if (currentValue + amount >= 1) {
+            quantityInput.value = currentValue + amount;
+        }
     }
 }
