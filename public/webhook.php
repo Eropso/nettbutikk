@@ -27,8 +27,8 @@ try {
         $cart = json_decode($session->metadata->cart, true);
         $total_amount = $session->amount_total / 100;
 
-        include("database.php");
-
+        include(__DIR__ . '/../config/database.php');
+        
         $sql = "INSERT INTO orders (user_id, total_amount) VALUES (:user_id, :total_amount)";
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':user_id', $user_id);

@@ -1,9 +1,9 @@
 <?php
 session_start();
-include("../database.php");
+include(__DIR__ . '/../config/database.php');
 
 if (!isset($_SESSION['loggedin']) || $_SESSION['user']['role'] !== 'admin') {
-    header("Location: ../index.php");
+    header("Location: ../public/index.php");
     exit();
 }
 
@@ -16,3 +16,5 @@ if ($order_id) {
 }
 header("Location: admin.php");
 exit();
+
+

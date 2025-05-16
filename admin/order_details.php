@@ -1,9 +1,9 @@
 <?php
 session_start();
-include("../database.php");
+include(__DIR__ . '/../config/database.php');
 
 if (!isset($_SESSION['loggedin']) || $_SESSION['user']['role'] !== 'admin') {
-    header("Location: ../index.php");
+    header("Location: ../public/index.php");
     exit();
 }
 
@@ -39,6 +39,35 @@ $items = $stmt->fetchAll();
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
+    <nav>
+        <ul class="sidebar">
+            <li onclick=hideSidebar()><a href="#"><img src="../images/close.svg" alt=""></a></li>
+            <li><a href="faq.php">FAQ</a></li>
+            <li><a href="mailto:phpkuben@gmail.com">Contact</a></li>
+        </ul>
+        
+        <ul>
+            <li><a href="../public/index.php"><p>Erosho</p></a></li>
+            <li class="hideOnMobile"><a href="faq.php">FAQ</a></li>
+
+            <!-- If logged in show profile, else show login -->
+            <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true): ?>
+                <div class="dropdown">
+                    <img class="profile" src="../images/person_white.svg" alt="defaultprofile" onclick="myFunction()">
+                    <div id="myDropdown" class="dropdown-content">
+                        <?php $role = $_SESSION['user']['role']; if($role == 'admin'){echo '<a href="admin.php">Admin Panel</a>';} ?>
+                        <a href="../public/settings.php"><img src="../images/settings.svg" alt="">Settings</a>
+                        <a href="../authentication/logout.php" class="logout-button"><img src="../images/logout.svg" alt="">Logout</a>
+                    </div>
+                </div>
+            <?php else: ?>
+                <a href="../authentication/login.php" class="login-button"><img src="../images/person_white.svg" alt="">Login</a>
+            <?php endif; ?>            
+            <li><a href="../public/cart.php"><img src="../images/shopping_bag.svg" alt=""></a></li>
+            <li class="menu-button" onclick=showSidebar()><a href="#"><img src="../images/menu.svg" alt=""></a></li>
+
+        </ul>
+    </nav>
     <h1>Order #<?= $order['id'] ?> Details</h1>
     <p>User: <?= htmlspecialchars($order['email']) ?> (<?= htmlspecialchars($order['first_name'] . ' ' . $order['last_name']) ?>)</p>
     <p>Date: <?= $order['order_date'] ?></p>

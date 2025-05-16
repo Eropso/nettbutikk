@@ -27,8 +27,9 @@ CREATE TABLE `orders` (
  `user_id` int(11) NOT NULL,
  `order_date` datetime NOT NULL DEFAULT current_timestamp(),
  `total_amount` decimal(10,2) NOT NULL,
+ `status` enum('processing','shipped','completed') NOT NULL DEFAULT 'processing',
  PRIMARY KEY (`id`)
-) 
+)
 
 
 CREATE TABLE `order_items` (
@@ -44,5 +45,5 @@ CREATE TABLE `order_items` (
 
 
 INSERT INTO `products` (`id`, `title`, `description`, `price`, `rrp`, `quantity`, `img`, `date_added`) VALUES
-(1, 'Hoodie', '<p>High quality Cotton. Thick material GSM 500. Made in Italy.</p>', '29.99', '10.00', 10, 'images/hoodie.png', '2025-01-01 00:00:00'),
-(2, 'Sweatpants', '<p>Cotton poly blend. Made in Italy. Minimum Wage Workers.</p>', '20.99', '8.99', 34, 'images/pants.png', '2025-01-01 00:00:00')
+(1, 'Hoodie', '<p>High quality Cotton. Thick material GSM 500. Made in Italy.</p>', '29.99', '10.00', 10, '../images/hoodie.png', '2025-01-01 00:00:00'),
+(2, 'Sweatpants', '<p>Cotton poly blend. Made in Italy. Minimum Wage Workers.</p>', '20.99', '8.99', 34, '../images/pants.png', '2025-01-01 00:00:00')

@@ -1,5 +1,5 @@
 <?php
-require 'vendor/autoload.php';
+require '../vendor/autoload.php';
 session_start();
 
 if (file_exists(__DIR__ . '/.env')) {
@@ -39,8 +39,8 @@ foreach ($_SESSION['cart'] as $product_id => $item) {
 
 $checkout_session = \Stripe\Checkout\Session::create([
     "mode" => "payment",
-    "success_url" => "https://erosho-web.azurewebsites.net/success.php",
-    "cancel_url" => "https://erosho-web.azurewebsites.net/index.php",
+    "success_url" => "https://eropso/success.php",
+    "cancel_url" => "https://eropso/index.php",
     "line_items" => $line_items,
     "metadata" => [
         "user_id" => $_SESSION['user']['id'],

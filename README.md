@@ -39,6 +39,12 @@ Erosho er et nettbutikk utviklet for å selge bedriften sine produkter til kunde
 - Nettsiden er public https://eropso.com
 - Det er brukt Azure for
 
+
+## 
+- IP-Adresse 
+-
+-
+
 ## Kontakt
 
 For spørsmål eller tilbakemeldinger, vennligst kontakt phpkuben@gmail.com.
