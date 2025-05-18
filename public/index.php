@@ -48,13 +48,15 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         </ul>
     </nav>
-    
-    <div class="hero-container">
-        <div class="hero-content">
-            <img src="../images/hero.png" alt="">
-            <a href="#products" class="hero-btn">Shop Now</a>
+    <a href="../authentication/login.php">
+        <div class="hero-container">
+            <div class="hero-content">
+                <img src="../images/hero.png" alt="">
+                <a href="../authentication/login.php" class="hero-btn">Shop Now</a>
+            </div>
         </div>
-    </div>
+    </a>
+
 
 
     

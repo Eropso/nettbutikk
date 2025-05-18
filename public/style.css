@@ -265,6 +265,13 @@ nav li:first-child {
 
 }
 
+@media (max-width: 1000px) {
+    .product-catalog {
+        flex-direction: column;
+        gap: 60px;
+    }
+}
+
 .product-container {
     display: flex;
     justify-content: center;

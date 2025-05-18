@@ -1,8 +1,6 @@
 # Nettbutikk
 
 
-
-
 ## Beskrivelse
 
 Erosho er et nettbutikk utviklet for å selge bedriften sine produkter til kunder. Applikasjonen gir brukerne muligheten til å legge til klær i handlekurven og fullføre kjøpene sine. Dette verktøyet er ideelt for både nye og erfarne kunder som ønsker en enkel og brukervennlig handleopplevelse.
@@ -33,17 +31,40 @@ Erosho er et nettbutikk utviklet for å selge bedriften sine produkter til kunde
 4. **Administrer profilen din**: Oppdater personlig informasjon via innstillingene.
 
 
-## Bruk
-- Nettsiden er hostet med Apache lokalt på en Raspberry Pi installert med ubuntu
-- For ny oppsett av Raspberry Pi følg stegene 1-6 i Readme https://github.com/Eropso/installasjonsveiledning
-- Nettsiden er public https://eropso.com
-- Det er brukt Azure for
+
+## Hosting og tilgjengelighet
+
+Nettsiden er hostet både lokalt og i skyen:
+
+- **Lokal hosting:** Nettsiden kjører på en Raspberry Pi med Apache og Ubuntu for utvikling og testing.
+    - For ny oppsett av Raspberry Pi følg stegene 1-6 i README-filen https://github.com/Eropso/installasjonsveiledning
 
 
-## 
-- IP-Adresse 
--
--
+- **Skyhosting:** Produksjonsversjonen er deployet i Azure og er tilgjengelig på [https://eropso.com](https://eropso.com).
+    - For tilgang til Azure brukeren ta kontakt
+
+Dette gir fleksibilitet for både lokal utvikling og sikker, skalerbar drift i skyen.
+
+## Teknisk informasjon
+
+| Miljø           | Server/Host         | Operativsystem | Webserver | IP-adresse / URL         | Annet         |
+|-----------------|--------------------|----------------|-----------|--------------------------|---------------|
+| Lokal utvikling | Raspberry Pi        | Ubuntu         | Apache    | 10.100.10.134 (lokal IP) | Tilgang via LAN |
+| Sky (produksjon)| Azure Web App      | Linux/Ubuntu   | Nginx     | [https://eropso.com](https://eropso.com) | SSL aktivert   |
+
+- **Lokal IP**: Du finner IP-adressen til Raspberry Pi ved å kjøre `hostname -I` i terminalen på Pi-en.
+- **Apache**: Brukes som webserver lokalt.
+- **Nginx**: Brukes som webserver i produksjon på Azure.
+- **SSL**: Aktivert i produksjon for sikker kommunikasjon.
+
+
+## Miljøvariabler og sikkerhet
+
+- **Lokalt:** Viktige passord og API-nøkler lagres i en `.env`-fil som ikke er med i versjonskontroll
+- **Azure (sky):** Sensitive verdier som API-nøkler og passord settes som environment variables i Azure-portalen.
+
+Dette sikrer at hemmelig informasjon ikke eksponeres i kildekoden eller i offentlige repoer.
+
 
 ## Kontakt
 
