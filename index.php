@@ -1,6 +1,6 @@
 <?php
 session_start();
-include(__DIR__ . '/../config/database.php');
+include(__DIR__ . 'config/database.php');
 
 $sql = "SELECT title, price, id, img FROM products";
 $stmt = $conn->query($sql);
