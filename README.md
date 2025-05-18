@@ -66,6 +66,10 @@ Dette gir fleksibilitet for både lokal utvikling og sikker, skalerbar drift i s
 Dette sikrer at hemmelig informasjon ikke eksponeres i kildekoden eller i offentlige repoer.
 
 
-## Kontakt
+## Bilder
+ - Ikoner er hentet fra Google Fonts
+ - Hero-bildet er generert med kunstig intelligens ved hjelp av ChatGPT (OpenAI).
+ - Klærne er designet av Eropso (Paul) ved hjelp av gratis mockups og redigert i Photoshop.
 
+## Kontakt
 For spørsmål eller tilbakemeldinger, vennligst kontakt phpkuben@gmail.com.
