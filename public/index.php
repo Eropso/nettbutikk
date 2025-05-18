@@ -51,7 +51,10 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <a href="../authentication/login.php">
         <div class="hero-container">
             <div class="hero-content">
-                <img src="../images/hero.png" alt="">
+                <picture>
+                    <source srcset="../images/hero_mobile.png" media="(max-width: 850px)">
+                    <img src="../images/hero.png" alt="">
+                </picture>
                 <a href="../authentication/login.php" class="hero-btn">Shop Now</a>
             </div>
         </div>

@@ -71,9 +71,9 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
                     <div class="quantity">
                         <label for="quantity">Quantity:</label>
                         <div id="quantity-container">
-                            <img src="images/remove.svg" alt="Decrease" id="decrease-quantity" onclick="changeQuantity(-1)">
+                            <img src="../images/remove.svg" alt="Decrease" id="decrease-quantity" onclick="changeQuantity(-1)">
                             <input type="text" name="quantity" id="quantity" value="1" min="1" required>
-                            <img src="images/add.svg" alt="Increase" id="increase-quantity" onclick="changeQuantity(1)">
+                            <img src="../images/add.svg" alt="Increase" id="increase-quantity" onclick="changeQuantity(1)">
                         </div>
                     </div>
                     <button id="purchase" type="submit">Add to Cart</button>

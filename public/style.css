@@ -282,6 +282,7 @@ nav li:first-child {
 }
 
 
+
 .product-container img {
     width: 600px;
     height: auto;
@@ -296,7 +297,13 @@ nav li:first-child {
     gap: 200px;
 }
 
-
+@media (max-width: 1000px) {
+    .product-description-container {
+        flex-direction: column;
+        gap: 20px;
+        padding-bottom: 150px;
+    }
+}
 
 .product-description-image img{
     width: 800px;
