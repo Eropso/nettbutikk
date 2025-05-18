@@ -115,5 +115,8 @@ if(isset($_POST["update"])){
             </div>
         </div>
     </form>
+
+
+    <script src="script.js"></script>
 </body>
 </html>

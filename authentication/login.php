@@ -46,7 +46,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $mail->SMTPSecure = 'tls';
                 $mail->Port = 587;
     
-                $mail->setFrom($_ENV['EMAIL_USERNAME'], 'Eroshop');
+                $mail->setFrom($_ENV['EMAIL_USERNAME'], 'Erosho');
                 $mail->addAddress($email);
                 $mail->isHTML(true);
                 $mail->Subject = 'Verification Code for Erosho Login';

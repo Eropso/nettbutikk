@@ -36,7 +36,7 @@ $items = $stmt->fetchAll();
 <html>
 <head>
     <title>Order Details</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../public/style.css">
 </head>
 <body>
     <nav>
@@ -48,7 +48,7 @@ $items = $stmt->fetchAll();
         
         <ul>
             <li><a href="../public/index.php"><p>Erosho</p></a></li>
-            <li class="hideOnMobile"><a href="faq.php">FAQ</a></li>
+            <li class="hideOnMobile"><a href="../public/faq.php">FAQ</a></li>
 
             <!-- If logged in show profile, else show login -->
             <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true): ?>
@@ -88,5 +88,8 @@ $items = $stmt->fetchAll();
         <?php endforeach; ?>
     </table>
     <a href="admin.php">Back to orders</a>
+
+    <script src="../public/script.js"></script>
+
 </body>
 </html>

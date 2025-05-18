@@ -30,8 +30,8 @@ $options = [
 
 // Enable SSL if in production
 if ($isProduction) {
-    $certPath = __DIR__ . '/ssl/BaltimoreCyberTrustRoot.crt.pem';
-
+    $certPath = dirname(__DIR__) . '/ssl/BaltimoreCyberTrustRoot.crt.pem';
+    
     if (!file_exists($certPath)) {
         die("SSL certificate not found at: $certPath");
     }

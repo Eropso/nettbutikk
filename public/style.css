@@ -202,12 +202,22 @@ nav li:first-child {
 
 
 
-/* Homepage */
+/* Hero Section */
 .hero-container {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    position: relative;
+    width: 100vw;
+    height: 1000px;
+    overflow: hidden;
+}
+
+.hero-content {
+    position: relative;
+    width: 100vw;
+    height: 1000px;
 }
 
 .hero-content img {
@@ -217,13 +227,13 @@ nav li:first-child {
     display: block;
 }
 
-
-
 .hero-btn {
+    position: absolute;
+    left: 50%;
+    bottom: 40px;
+    transform: translateX(-50%);
     display: flex;
     justify-content: center;
-    position: absolute;
-    bottom: 5px;
     padding: 18px 48px;
     background: rgb(152, 16, 255);
     color: white;

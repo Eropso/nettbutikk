@@ -88,7 +88,5 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
     <script src="script.js"></script>
 
-
-
 </body>
 </html>

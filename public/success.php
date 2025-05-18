@@ -43,5 +43,8 @@ unset($_SESSION['cart']);
     </nav>
     <h1>Thank you for your purchase!</h1>
     <p>Your payment was successful. Your order is being processed.</p>
+
+
+    <script src="script.js"></script>
 </body>
 </html>

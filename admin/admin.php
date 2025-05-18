@@ -27,7 +27,7 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body>
     <nav>
         <ul class="sidebar">
-            <li onclick=hideSidebar()><a href="#"><img src="images/close.svg" alt=""></a></li>
+            <li onclick=hideSidebar()><a href="#"><img src="../images/close.svg" alt=""></a></li>
             <li><a href="../public/faq.php">FAQ</a></li>
             <li><a href="mailto:phpkuben@gmail.com">Contact</a></li>
         </ul>
@@ -42,8 +42,8 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <img class="profile" src="../images/person_white.svg" alt="defaultprofile" onclick="myFunction()">
                     <div id="myDropdown" class="dropdown-content">
                         <?php $role = $_SESSION['user']['role']; if($role == 'admin'){echo '<a href="admin.php">Admin Panel</a>';} ?>
-                        <a href="settings.php"><img src="../images/settings.svg" alt="">Settings</a>
-                        <a href="authentication/logout.php" class="logout-button"><img src="../images/logout.svg" alt="">Logout</a>
+                        <a href="../public/settings.php"><img src="../images/settings.svg" alt="">Settings</a>
+                        <a href="../authentication/logout.php" class="logout-button"><img src="../images/logout.svg" alt="">Logout</a>
                     </div>
                 </div>
             <?php else: ?>
@@ -83,6 +83,7 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </table>
 
     
+    <script src="../public/script.js"></script>
 
 </body>
 </html>

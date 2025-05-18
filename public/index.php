@@ -52,8 +52,8 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="hero-container">
         <div class="hero-content">
             <img src="../images/hero.png" alt="">
+            <a href="#products" class="hero-btn">Shop Now</a>
         </div>
-
     </div>
 
 
@@ -63,7 +63,6 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <a href="product.php?id=<?php echo $product['id']; ?>" class="product-container">
                 <img src="<?php echo $product['img'] ?>" alt="">
                 <h1><?php echo $product['title']; ?></h1>
-                <a href="#products" class="hero-btn">Shop Now</a>
             </a>
         <?php endforeach; ?>
         
