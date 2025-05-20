@@ -76,6 +76,6 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 
-    <script src="script.js"></script>
+    <script src="public/script.js"></script>
 </body>
 </html>
