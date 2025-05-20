@@ -3,7 +3,7 @@ session_start();
 include(__DIR__ . '/../config/database.php');
 
 if (!isset($_SESSION['loggedin']) || $_SESSION['user']['role'] !== 'admin') {
-    header("Location: ../public/index.php");
+    header("Location: ../index.php");
     exit();
 }
 

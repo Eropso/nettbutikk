@@ -20,7 +20,7 @@ unset($_SESSION['cart']);
         </ul>
         
         <ul>
-            <li><a href="index.php"><p>Erosho</p></a></li>
+            <li><a href="../index.php"><p>Erosho</p></a></li>
             <li class="hideOnMobile"><a href="faq.php">FAQ</a></li>
 
             <!-- If logged in show profile, else show login -->

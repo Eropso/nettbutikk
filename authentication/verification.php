@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         exit();
                     }
                     else{
-                        header('Location: ../public/index.php');
+                        header('Location: ../index.php');
                         exit();
                     }
 
@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         exit();
                     }
                     else{
-                        header('Location: ../public/index.php');
+                        header('Location: ../index.php');
                         exit();
                     }
 

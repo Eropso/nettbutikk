@@ -3,7 +3,7 @@ session_start();
 include(__DIR__ . '/../config/database.php');
 
 if (!isset($_SESSION['loggedin']) || $_SESSION['user']['role'] !== 'admin') {
-    header("Location: ../public/index.php");
+    header("Location: ../index.php");
     exit();
 }
 
@@ -47,7 +47,7 @@ $items = $stmt->fetchAll();
         </ul>
         
         <ul>
-            <li><a href="../public/index.php"><p>Erosho</p></a></li>
+            <li><a href="../index.php"><p>Erosho</p></a></li>
             <li class="hideOnMobile"><a href="../public/faq.php">FAQ</a></li>
 
             <!-- If logged in show profile, else show login -->

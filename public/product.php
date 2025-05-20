@@ -29,7 +29,7 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
         </ul>
         
         <ul>
-            <li><a href="index.php"><p>Erosho</p></a></li>
+            <li><a href="../index.php"><p>Erosho</p></a></li>
             <li class="hideOnMobile"><a href="faq.php">FAQ</a></li>
 
             <!-- If logged in show profile, else show login -->
@@ -57,7 +57,7 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
         <div class="product-description-container">
             <div class="product-description-image">
-                <img src="<?php echo $result['img'] ?>" alt="">
+                <img src="../<?php echo $result['img']; ?>" alt="">            
             </div>
 
             <div>

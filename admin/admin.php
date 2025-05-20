@@ -33,7 +33,7 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </ul>
         
         <ul>
-            <li><a href="../public/index.php"><p>Erosho</p></a></li>
+            <li><a href="../index.php"><p>Erosho</p></a></li>
             <li class="hideOnMobile"><a href="../public/faq.php">FAQ</a></li>
 
             <!-- If logged in show profile, else show login -->

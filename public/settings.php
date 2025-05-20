@@ -4,7 +4,7 @@ session_start();
 include(__DIR__ . '/../config/database.php');
 
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    header("Location: index.php");
+    header("Location: ../index.php");
     exit();
 }
 
@@ -74,7 +74,7 @@ if(isset($_POST["update"])){
         </ul>
         
         <ul>
-            <li><a href="index.php"><p>Erosho</p></a></li>
+            <li><a href="../index.php"><p>Erosho</p></a></li>
             <li class="hideOnMobile"><a href="faq.php">FAQ</a></li>
 
             <!-- If logged in show profile, else show login -->
