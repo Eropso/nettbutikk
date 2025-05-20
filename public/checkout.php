@@ -2,8 +2,9 @@
 require '../vendor/autoload.php';
 session_start();
 
-if (file_exists(__DIR__ . '/../.env')) {
-    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+
+if (file_exists(__DIR__ . '/../config/.env')) {
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../config');
     $dotenv->load();
 }
 
