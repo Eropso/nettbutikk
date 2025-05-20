@@ -50,7 +50,7 @@ Dette gir fleksibilitet for både lokal utvikling og sikker, skalerbar drift i s
 | Miljø           | Server/Host         | Operativsystem | Webserver | IP-adresse / URL         | Annet         |
 |-----------------|--------------------|----------------|-----------|--------------------------|---------------|
 | Lokal utvikling | Raspberry Pi        | Ubuntu         | Apache    | 10.100.10.134 (lokal IP) | Tilgang via LAN |
-| Sky (produksjon)| Azure Web App      | Linux/Ubuntu   | Nginx     | [https://eropso.com](https://eropso.com) | SSL aktivert   |
+| Sky (produksjon)| Azure Web App      | Linux   | Nginx     | [https://eropso.com](https://eropso.com) | SSL aktivert   |
 
 - **Lokal IP**: Du finner IP-adressen til Raspberry Pi ved å kjøre `hostname -I` i terminalen på Pi-en.
 - **Apache**: Brukes som webserver lokalt.
