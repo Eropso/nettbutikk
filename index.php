@@ -43,7 +43,7 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <?php else: ?>
                 <a href="authentication/login.php" class="login-button"><img src="images/person_white.svg" alt="">Login</a>
             <?php endif; ?>            
-            <li><a href="cart.php"><img src="images/shopping_bag.svg" alt=""></a></li>
+            <li><a href="public/cart.php"><img src="images/shopping_bag.svg" alt=""></a></li>
             <li class="menu-button" onclick=showSidebar()><a href="#"><img src="images/menu.svg" alt=""></a></li>
 
         </ul>
