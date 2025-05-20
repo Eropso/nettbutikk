@@ -39,7 +39,7 @@ foreach ($_SESSION['cart'] as $product_id => $item) {
 
 $checkout_session = \Stripe\Checkout\Session::create([
     "mode" => "payment",
-    "success_url" => "https://eropso/success.php",
+    "success_url" => "https://eropso/public/success.php",
     "cancel_url" => "https://eropso/index.php",
     "line_items" => $line_items,
     "metadata" => [
