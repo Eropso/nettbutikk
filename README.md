@@ -1,4 +1,4 @@
-# Nettbutikk
+# Erosho – Nettbutikk
 
 
 ## Beskrivelse
@@ -25,10 +25,11 @@ Erosho er et nettbutikk utviklet for å selge bedriften sine produkter til kunde
 
 ## Bruk
 
-1. **Registrer deg**: Opprett en konto ved å fylle ut registreringsskjemaet.
-2. **Logg inn**: Logg inn med e-post og passord.
-3. **Handle**: Bla gjennom produktene, legg dem til i handlekurven, og fullfør kjøpet.
-4. **Administrer profilen din**: Oppdater personlig informasjon via innstillingene.
+- **Handlekurv**: Legg til og fjern produkter, se totalpris.
+- **Kjøp og betaling**: Fullfør kjøp med Stripe-integrasjon.
+- **Brukerhåndtering**: Registrer deg, logg inn, og administrer profil.
+- **E-postbekreftelse**: Bekreft konto med kode via e-post.
+
 
 
 
@@ -57,10 +58,38 @@ Dette gir fleksibilitet for både lokal utvikling og sikker, skalerbar drift i s
 - **Nginx**: Brukes som webserver i produksjon på Azure.
 - **SSL**: Aktivert i produksjon for sikker kommunikasjon.
 
+## Domene og DNS-oppsett
+
+| Felt              | Verdi                                          | Kommentar                            |
+|-------------------|-----------------------------------------------|---------------------------------------|
+| Domenenavn        | https://eropso.com                       | Registrert hos Namecheap              |
+| DNS-provider      | Namecheap                                     | Brukes til å administrere DNS         |
+| App Service IP    | 20.119.0.51                                   | Peker til Azure App Service (A-record)|
+| DNS A-record      | eropso.com → 20.119.0.51                | Kreves for tilkobling                 |
+| DNS TXT-record    | asuid=A71647E4F393CEA4D67AB3875EFA2C76D3ED9FCF8671C5A3C9E058C77FEBBAA8                   | Brukes for verifisering i Azure  |
+| MySQL host        | erosho-server.mysql.database.azure.com                 | MySQL Flexible Server                 |
+| MySQL bruker      | eropso                                     | Opprettes i Azure                     |
+| Porter            | 80 (HTTP), 443 (HTTPS)                        | Standard for nettsider                |
+| Teknologi         | PHP 8.2, Nginx, MySQL 8                        | App Service stack                     |
+
+## Tjenester brukt
+
+- **Azure App Service** – Webhosting
+- **Azure MySQL Flexible Server** – Database
+- **Namecheap** – DNS og domenenavn
 
 ## Miljøvariabler og sikkerhet
 
 - **Lokalt:** Viktige passord og API-nøkler lagres i en `.env`-fil som ikke er med i versjonskontroll
+
+Eksempel på `.env`-fil (lokal):
+```env
+DB_HOST=localhost
+DB_NAME=eropso
+DB_USER=root
+DB_PASS=hemmelig
+STRIPE_API_KEY=sk_test_xxx
+```
 - **Azure (sky):** Sensitive verdier som API-nøkler og passord settes som environment variables i Azure-portalen.
 
 Dette sikrer at hemmelig informasjon ikke eksponeres i kildekoden eller i offentlige repoer.
