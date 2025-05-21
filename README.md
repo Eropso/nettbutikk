@@ -24,12 +24,10 @@ Erosho er et nettbutikk utviklet for å selge bedriften sine produkter til kunde
 
 
 ## Bruk
-
-- **Handlekurv**: Legg til og fjern produkter, se totalpris.
-- **Kjøp og betaling**: Fullfør kjøp med Stripe-integrasjon.
-- **Brukerhåndtering**: Registrer deg, logg inn, og administrer profil.
-- **E-postbekreftelse**: Bekreft konto med kode via e-post.
-
+1. **Registrer deg:** Fyll ut skjema med navn, e-post og passord.
+2. **Logg inn:** Bruk e-post og passord.
+3. **Handle:** Bla gjennom produkter og legg dem til i handlekurven.
+4. **Betal:** Gå til kassen og fullfør kjøpet med Stripe.
 
 
 
