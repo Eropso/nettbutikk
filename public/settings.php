@@ -115,6 +115,26 @@ if(isset($_POST["update"])){
             </div>
         </div>
     </form>
+    
+    <?php
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $twofa_checked = isset($_POST['twofa_checked']) ? 1:0;
+
+            $sql = 'UPDATE users SET 2fa_enabled = :twofa_checked WHERE id = :id';
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':twofa_checked', $twofa_checked);
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+        }
+
+
+    ?>
+
+    <form action="" method='POST'>
+        <label>2FA</label>
+        <input type="checkbox" name="twofa_checked">
+        <button type="submit">Save</button>
+    </form>
 
 
     <script src="script.js"></script>
