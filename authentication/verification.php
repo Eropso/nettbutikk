@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                     
                     if (isset($_SESSION['login-from-cart'])){
-                        header("Location: ../public/cart.php");
+                        header("Location: ../public/checkout.php");
                         exit();
                     }
                     else{
