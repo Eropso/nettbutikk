@@ -127,12 +127,18 @@ if(isset($_POST["update"])){
             $stmt->execute();
         }
 
+        $sql = 'SELECT 2fa_enabled FROM users WHERE id = :id';
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        $verify_result=$stmt->fetch(pdo::FETCH_ASSOC)
+
 
     ?>
 
     <form action="" method='POST'>
         <label>2FA</label>
-        <input type="checkbox" name="twofa_checked">
+        <input type="checkbox" name="twofa_checked" <?php echo $verify_result['2fa_enabled'] ? 'checked' : '';?>>
         <button type="submit">Save</button>
     </form>
 
