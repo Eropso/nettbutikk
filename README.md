@@ -92,6 +92,14 @@ STRIPE_API_KEY=sk_test_xxx
 
 Dette sikrer at hemmelig informasjon ikke eksponeres i kildekoden eller i offentlige repoer.
 
+## Database
+- Tabellene ligger inne i tables.sql filen. Måten du setter opp konfigurasjon av MariaDB er vist i README-filen https://github.com/Eropso/installasjonsveiledning.
+- Kobling til databasen for azure, kan du logge inn slikt:
+```bash
+mysql -u eropso -p -h erosho-server.mysql.database.azure.com
+```
+IP-en må være tillatt i brannmuren. Dette kan gjøres i azure under Networking i din Azure Database for MySQL flexible server
+-Azure Database for MySQL flexible server kan lages ved å følge instruksene
 
 ## Bilder
  - Ikoner er hentet fra Google Fonts
