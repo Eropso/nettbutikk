@@ -99,7 +99,7 @@ Dette sikrer at hemmelig informasjon ikke eksponeres i kildekoden eller i offent
 mysql -u eropso -p -h erosho-server.mysql.database.azure.com
 ```
 IP-en må være tillatt i brannmuren. Dette kan gjøres i azure under Networking i din Azure Database for MySQL flexible server
--Azure Database for MySQL flexible server kan lages ved å følge instruksene
+- Azure Database for MySQL flexible server kan lages ved å følge instruksene
 
 ## Bilder
  - Ikoner er hentet fra Google Fonts
