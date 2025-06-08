@@ -201,7 +201,11 @@ nav li:first-child {
 }
 
 
-
+.error-message {
+    color: red;
+    display: flex;
+    justify-content: center;
+}
 
 /* Hero Section */
 .hero-container {

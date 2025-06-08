@@ -17,12 +17,11 @@ $last_name = filter_input(INPUT_POST, 'last_name');
 $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
 $password = filter_input(INPUT_POST, 'password');
 
-
+$error = '';
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     if(empty($first_name) || empty($last_name) || empty($email) || empty($password)){
-        echo 'Please fill in all fields';
-        return;
+        $error = 'Please fill in all fields';
     }
     else {
         $sql = "SELECT id, email, first_name, last_name, password, role FROM users WHERE email = :email;";
@@ -31,8 +30,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $stmt->execute();
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         if($user){
-            echo 'User already exists';
-            return;
+            $error = 'User already exists';
         }
         else {
             $_SESSION['new_user'] = [   
@@ -73,13 +71,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 header("Location: verification.php");
                 exit();
             } catch (Exception $e) {
-                echo "Error: {$mail->ErrorInfo}";
+                $error = "Error: {$mail->ErrorInfo}";
             }
         }
     }
 }
-
-
 ?>
 
 <!DOCTYPE html>
@@ -94,6 +90,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     <div class="register_form">
         <form action="" method="POST">
             <div class="register_inputs">
+                <?php if (!empty($error)): ?>
+                    <div class="error-message" style="color:red;"><?php echo $error; ?></div>
+                <?php endif; ?>
                 <label for="name">First name:</label>
                 <input type="text" name="first_name" id="first_name" required>
                 <label for="name">Last name:</label>

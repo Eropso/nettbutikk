@@ -16,10 +16,11 @@ $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
 $password = filter_input(INPUT_POST, 'password');
 
 
+$error = '';
+
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     if(empty($email) || empty($password)){
-        echo 'Please fill in all fields';
-        return;
+        $error = 'Please fill in all fields';
     }
     else {
         $sql = "SELECT id, email, first_name, last_name, password, role FROM users WHERE email = :email;";
@@ -94,9 +95,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 }
             }
 
+        } else {
+            $error = 'Incorrect email or password';
         }
     }
-
 }
 
 
@@ -114,6 +116,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     <div class="register_form">
         <form action="" method="POST">
             <div class="register_inputs">
+                <?php if (!empty($error)): ?>
+                    <div class="error-message"><?php echo $error; ?></div>
+                <?php endif; ?>
                 <label for="email">Email:</label>
                 <input type="email" name="email" id="email" required>
                 <label for="password">Password:</label>
