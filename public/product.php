@@ -62,6 +62,8 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
             <div>
                 <h1><?php echo $result['title']?></h1>
+                <p><?php echo $result['price']?>$</p>
+
                 <p><?php echo $result['description'] ?></p>
 
                 <form action="cart.php" method="POST">

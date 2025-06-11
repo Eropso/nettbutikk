@@ -78,54 +78,59 @@ if (isset($_GET['remove'])) {
         </ul>
     </nav>
 
-    <h1>Your Shopping Cart</h1>
-    <?php if (!empty($_SESSION['cart'])): ?>
-        <table>
-            <thead>
-                <tr>
-                    <th>Product</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Total</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($_SESSION['cart'] as $product_id => $item): ?>
+
+
+    <div class="shopping-cart-container">
+        <h1>Your Shopping Cart</h1>
+        <?php if (!empty($_SESSION['cart'])): ?>
+            <table>
+                <thead>
                     <tr>
-                        <td><?php echo $item['title']; ?></td>
-                        <td>$<?php echo $item['price']; ?></td>
-
-                        <td id="quantity-container">
-                            <img src="../images/remove.svg" alt="" onclick="changeQuantity('<?php echo $product_id; ?>', -1)">
-                            <input type="text" name="quantity_<?php echo $product_id; ?>" id="quantity_<?php echo $product_id; ?>" value="<?php echo $item['quantity']; ?>" min="1" readonly>
-                            <img src="../images/add.svg" alt="" onclick="changeQuantity('<?php echo $product_id; ?>', 1)">
-                        </td>
-
-                        <td>$<?php echo $item['price'] * $item['quantity']; ?></td>
-                        <td><a href="cart.php?remove=<?php echo $product_id; ?>">Remove</a></td>                    
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th>Action</th>
                     </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-        <p><strong>Total:</strong> $
-            <?php
-            $total = 0;
-            foreach ($_SESSION['cart'] as $item) {
-                $total += $item['price'] * $item['quantity'];
-            }
-            echo $total;
-            ?>
-        </p>
-        <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true): ?>
-            <?php $_SESSION['login-from-cart'] = true; ?>
-            <a href="../authentication/login.php">Proceed to Checkout</a>
+                </thead>
+                <tbody>
+                    <?php foreach ($_SESSION['cart'] as $product_id => $item): ?>
+                        <tr>
+                            <td><?php echo $item['title']; ?></td>
+                            <td>$<?php echo $item['price']; ?></td>
+
+                            <td id="quantity-container">
+                                <img src="../images/remove.svg" alt="" onclick="changeQuantity('<?php echo $product_id; ?>', -1)">
+                                <input type="text" name="quantity_<?php echo $product_id; ?>" id="quantity_<?php echo $product_id; ?>" value="<?php echo $item['quantity']; ?>" min="1" readonly>
+                                <img src="../images/add.svg" alt="" onclick="changeQuantity('<?php echo $product_id; ?>', 1)">
+                            </td>
+
+                            <td>$<?php echo $item['price'] * $item['quantity']; ?></td>
+                            <td><a href="cart.php?remove=<?php echo $product_id; ?>">Remove</a></td>                    
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+            <p><strong>Total:</strong> $
+                <?php
+                $total = 0;
+                foreach ($_SESSION['cart'] as $item) {
+                    $total += $item['price'] * $item['quantity'];
+                }
+                echo $total;
+                ?>
+            </p>
+            <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true): ?>
+                <?php $_SESSION['login-from-cart'] = true; ?>
+                <a href="../authentication/login.php">Proceed to Checkout</a>
+            <?php else: ?>
+                <a href="checkout.php">Proceed to Checkout</a>
+            <?php endif; ?>
         <?php else: ?>
-            <a href="checkout.php">Proceed to Checkout</a>
+            <p>Your cart is empty.</p>
         <?php endif; ?>
-    <?php else: ?>
-        <p>Your cart is empty.</p>
-    <?php endif; ?>
+    </div>
+
 
 
     <script src="script.js"></script>

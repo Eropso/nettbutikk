@@ -62,7 +62,13 @@ session_start()
             
 
             <div id="faq-item">
+                <h3>How can I make a purchase?</h3>
+                <p>Click on a product, then put the amount you want inside the cart. You have to be logged in to make a purchase. <br>Proceed to checkout where you need to enter your credit details. When succesful purchase, you will receive the items normally within 14 days.</p>
+            </div>
 
+            <div id="faq-item">
+                <h3>How do I create an account?</h3>
+                <p>Click on login on the top, then click register and enter your personal information. You will receive a verification code in your email. <br>Write the code you received. Your account is created and you can loggin with your credentials.</p>
             </div>
 
 

@@ -2,19 +2,24 @@
 require '../vendor/autoload.php';
 session_start();
 
-
+// Load env
 if (file_exists(__DIR__ . '/../config/.env')) {
     $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../config');
     $dotenv->load();
 }
 
+//Set secret key
 $stripe_secret_key = $_ENV['STRIPE_SECRET_KEY'];
 \Stripe\Stripe::setApiKey($stripe_secret_key);
+
+
+
 
 $cart_items = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
 $line_items = [];
 
-foreach ($cart_items as $item) {
+foreach ($cart_items as $product_id => $item) {
+    // Stripe expects price in cents
     $line_items[] = [
         "quantity" => $item['quantity'],
         "price_data" => [
@@ -25,19 +30,16 @@ foreach ($cart_items as $item) {
             ]
         ]
     ];
-}
-
-// Pass cart as JSON in metadata
-$cart_metadata = [];
-foreach ($_SESSION['cart'] as $product_id => $item) {
+    // Prepare cart metadata for webhook
     $cart_metadata[] = [
         'product_id' => $product_id,
-        'title' => $item['title'],
         'price' => $item['price'],
         'quantity' => $item['quantity']
     ];
 }
 
+
+// Create Stripe Checkout session
 $checkout_session = \Stripe\Checkout\Session::create([
     "mode" => "payment",
     "success_url" => "https://eropso.com/public/success.php",
@@ -49,7 +51,7 @@ $checkout_session = \Stripe\Checkout\Session::create([
     ],
 ]);
 
-http_response_code(303);
+
 header("Location: " . $checkout_session->url);
 exit();
 ?>
