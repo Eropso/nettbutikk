@@ -11,23 +11,30 @@ if (!isset($_SESSION['cart'])) {
 // Handle adding items to the cart
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $product_id = $_POST['product_id'];
-    $product_title = $_POST['product_title'];
-    $product_price = $_POST['product_price'];
-    $quantity = $_POST['quantity'];
-
-    // Check if the product is already in the cart
-    if (isset($_SESSION['cart'][$product_id])) {
-        $_SESSION['cart'][$product_id]['quantity'] += $quantity;
+    if (isset($_POST['update_quantity'])) {
+        $quantity = max(1, intval($_POST['quantity']));
+        $_SESSION['cart'][$product_id]['quantity'] = $quantity;
+        header('Location: cart.php');
+        exit();
     } else {
-        $_SESSION['cart'][$product_id] = [
-            'title' => $product_title,
-            'price' => $product_price,
-            'quantity' => $quantity,
-        ];
-    }
+        $product_title = $_POST['product_title'];
+        $product_price = $_POST['product_price'];
+        $quantity = $_POST['quantity'];
 
-    header('Location: cart.php');
-    exit();
+        // Check if the product is already in the cart
+        if (isset($_SESSION['cart'][$product_id])) {
+            $_SESSION['cart'][$product_id]['quantity'] += $quantity;
+        } else {
+            $_SESSION['cart'][$product_id] = [
+                'title' => $product_title,
+                'price' => $product_price,
+                'quantity' => $quantity,
+            ];
+        }
+
+        header('Location: cart.php');
+        exit();
+    }
 }
 
 // Handle removing items from the cart
@@ -100,9 +107,13 @@ if (isset($_GET['remove'])) {
                             <td>$<?php echo $item['price']; ?></td>
 
                             <td id="quantity-container">
-                                <img src="../images/remove.svg" alt="" onclick="changeQuantity('<?php echo $product_id; ?>', -1)">
-                                <input type="text" name="quantity_<?php echo $product_id; ?>" id="quantity_<?php echo $product_id; ?>" value="<?php echo $item['quantity']; ?>" min="1" readonly>
-                                <img src="../images/add.svg" alt="" onclick="changeQuantity('<?php echo $product_id; ?>', 1)">
+                                <form method="POST" action="cart.php" style="display:inline;">
+                                    <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
+                                    <img src="../images/remove.svg" alt="" onclick="changeQuantity('<?php echo $product_id; ?>', -1)">
+                                    <input type="text" name="quantity" id="quantity_<?php echo $product_id; ?>" value="<?php echo $item['quantity']; ?>" min="1" readonly>
+                                    <img src="../images/add.svg" alt="" onclick="changeQuantity('<?php echo $product_id; ?>', 1)">
+                                    <button type="submit" name="update_quantity">Update</button>
+                                </form>
                             </td>
 
                             <td>$<?php echo $item['price'] * $item['quantity']; ?></td>

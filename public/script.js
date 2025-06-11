@@ -26,7 +26,7 @@ function hideSidebar() {
 }
 
 
-
+//quantity
 function changeQuantity(idOrAmount, amount) {
     // Hvis bare ett argument: bruk på produktsiden
     if (amount === undefined) {

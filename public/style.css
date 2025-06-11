@@ -406,6 +406,22 @@ nav li:first-child {
 .shopping-cart-container {
     margin-left: 30px;
 }
+.shopping-cart-container th{
+    text-align: left;
+}
+
+.shopping-cart-container table th,
+.shopping-cart-container table td {
+    padding: 5px 14px; 
+    min-width: 100px;
+}
+
+.shopping-cart-container table {
+    border-collapse: collapse;
+    width: auto; 
+    margin-bottom: 24px;
+}
+
 
 /* User Setting */
 
