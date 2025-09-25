@@ -8,12 +8,12 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     exit();
 }
 
-if (!isset($_SESSION['user']['id'])) { // Check for user['id']
+if (!isset($_SESSION['user']['id'])) {
     echo "User ID is not set in the session.";
     exit();
 }
 
-$id = $_SESSION['user']['id']; // Use user['id'] here
+$id = $_SESSION['user']['id'];
 $sql = "SELECT id, email, first_name, last_name, role FROM users WHERE id = :id";
 $stmt = $conn->prepare($sql);
 $stmt->bindParam(':id', $id);
@@ -115,32 +115,7 @@ if(isset($_POST["update"])){
 
 
 
-            <?php
-                if($_SERVER['REQUEST_METHOD'] === 'POST'){
-                    $twofa_checked = isset($_POST['twofa_checked']) ? 1:0;
 
-                    $sql = 'UPDATE users SET 2fa_enabled = :twofa_checked WHERE id = :id';
-                    $stmt = $conn->prepare($sql);
-                    $stmt->bindParam(':twofa_checked', $twofa_checked);
-                    $stmt->bindParam(':id', $id);
-                    $stmt->execute();
-                }
-
-                $sql = 'SELECT 2fa_enabled FROM users WHERE id = :id';
-                $stmt = $conn->prepare($sql);
-                $stmt->bindParam(':id', $id);
-                $stmt->execute();
-                $verify_result=$stmt->fetch(pdo::FETCH_ASSOC)
-
-
-            ?>
-            <div>
-                <form action="" method='POST'>
-                    <label>2FA</label>
-                    <input type="checkbox" name="twofa_checked" <?php echo $verify_result['2fa_enabled'] ? 'checked' : '';?>>
-                    <button type="submit">Save</button>
-                </form>
-            </div>
 
         </div>
 
