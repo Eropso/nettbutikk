@@ -115,21 +115,22 @@ if(isset($_POST["update"])){
 
 
             <?php
-                if($_SERVER['REQUEST METHOD'] === 'POST'){
+                if($_SERVER['REQUEST_METHOD'] === 'POST'){
                     $twofa_checked = isset($_POST['twofa_checked']) ? 1:0;
 
                     $sql = 'UPDATE users SET 2fa_enabled = :twofa_checked WHERE id = :id';
                     $stmt = $conn->prepare($sql);
-                    $stmt->bindparam('twofa_checked', $twofa_checked);
-                    $stmt->bindparam('id', $id);
+                    $stmt->bindParam(':twofa_checked', $twofa_checked);
+                    $stmt->bindParam(':id', $id);
                     $stmt->execute();
                 }
-                
+
                 $sql = 'SELECT 2fa_enabled FROM users WHERE id = :id';
                 $stmt = $conn->prepare($sql);
                 $stmt->bindParam(':id', $id);
                 $stmt->execute();
                 $verify_result=$stmt->fetch(pdo::FETCH_ASSOC)
+
 
             ?>
             <div>
@@ -140,6 +141,7 @@ if(isset($_POST["update"])){
                 </form>
             </div>
 
+        </div>
 
 
         </div>
