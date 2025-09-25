@@ -29,14 +29,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $stmt->execute();
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($user && password_verify($password, $user['password'])) {
-            $sql = 'SELECT 2fa_enabled FROM users WHERE email = :email';
-            $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':email', $email);
-            $stmt->execute();
-            $verify_result=$stmt->fetch(pdo::FETCH_ASSOC);
-
-            if ($verify_result['2fa_enabled'] == 1){
+        if ($verify_result['2fa_enabled'] == 1){
             $verification_code = rand(100000, 999999);
             $_SESSION['verification_code'] = $verification_code;
             $_SESSION['email'] = $email;
@@ -70,7 +63,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             } catch (Exception $e) {
                 echo "Error: {$mail->ErrorInfo}";
             }
-
+        } else{
             // Set session variables
             $_SESSION['loggedin'] = true;
             $_SESSION['user'] = [
@@ -93,12 +86,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 header('Location: ../index.php');
                 exit();
             }
-
-            } else{
-                header('Location: ../index.php');
-                exit();
-            }
-
 
         } else {
             $error = 'Incorrect email or password';
