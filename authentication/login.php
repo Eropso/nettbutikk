@@ -36,6 +36,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $stmt->execute();
             $verify_result=$stmt->fetch(pdo::FETCH_ASSOC);
 
+            if ($verify_result['2fa_enabled'] == 1){
             $verification_code = rand(100000, 999999);
             $_SESSION['verification_code'] = $verification_code;
             $_SESSION['email'] = $email;
@@ -92,6 +93,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 header('Location: ../index.php');
                 exit();
             }
+
+            } else{
+                header('Location: ../index.php');
+                exit();
+            }
+
 
         } else {
             $error = 'Incorrect email or password';
