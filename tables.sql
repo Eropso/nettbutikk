@@ -43,7 +43,6 @@ CREATE TABLE `order_items` (
  CONSTRAINT `order_items_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE
 ) 
 
-ALTER TABLE users ADD COLUMN 2fa_enabled BOOLEAN SET DEFAULT FALSE 
 
 INSERT INTO `products` (`id`, `title`, `description`, `price`, `rrp`, `quantity`, `img`, `date_added`) VALUES
 (1, 'Hoodie', '<p>High quality Cotton. Thick material GSM 500. Made in Italy.</p>', '29.99', '10.00', 10, 'images/hoodie.png', '2025-01-01 00:00:00'),
