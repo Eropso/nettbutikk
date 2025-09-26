@@ -113,38 +113,33 @@ if(isset($_POST["update"])){
                 </div>
             </div>
 
-
             <?php
                 if($_SERVER['REQUEST_METHOD'] === 'POST'){
-                    $twofa_checked = isset($_POST['twofa_checked']) ? 1:0;
-
-                    $sql = 'UPDATE users SET 2fa_enabled = :twofa_checked WHERE id = :id';
+                    $twofa_checked = isset($_POST['twofa_checked']) ? 1 : 0;
+                    $sql = 'UPDATE users SET 2fa_enabled = : 2fa_enabled WHERE id = :id';
                     $stmt = $conn->prepare($sql);
-                    $stmt->bindParam(':twofa_checked', $twofa_checked);
-                    $stmt->bindParam(':id', $id);
+                    $stmt->bindParam('2fa_enabled', $twofa_checked);
+                    $stmt->bindParam('id', $id);
                     $stmt->execute();
                 }
 
                 $sql = 'SELECT 2fa_enabled FROM users WHERE id = :id';
                 $stmt = $conn->prepare($sql);
-                $stmt->bindParam(':id', $id);
+                $stmt->bindParam('id', $id);
                 $stmt->execute();
-                $verify_result=$stmt->fetch(pdo::FETCH_ASSOC)
+                $verify_result = $stmt -> fetch(pdo::FETCH_ASSOC);
 
 
             ?>
+
             <div>
                 <form action="" method='POST'>
                     <label>2FA</label>
-                    <input type="checkbox" name="twofa_checked" <?php echo $verify_result['2fa_enabled'] ? 'checked' : '';?>>
-                    <button type="submit">Save</button>
+                    <input name='twofa_checked' type="checkbox" <?php echo $verify_result['2fa_enabled'] ? 'checked' : '' ;?>
+                    <button>Submit</button>
+
                 </form>
             </div>
-
-        </div>
-
-
-        </div>
 
     </form>
     
