@@ -118,14 +118,14 @@ if(isset($_POST["update"])){
                     $twofa_checked = isset($_POST['twofa_checked']) ? 1 : 0;
                     $sql = 'UPDATE users SET 2fa_enabled = : 2fa_enabled WHERE id = :id';
                     $stmt = $conn->prepare($sql);
-                    $stmt->bindParam('2fa_enabled', $twofa_checked);
-                    $stmt->bindParam('id', $id);
+                    $stmt->bindParam(':2fa_enabled', $twofa_checked);
+                    $stmt->bindParam(':id', $id);
                     $stmt->execute();
                 }
 
                 $sql = 'SELECT 2fa_enabled FROM users WHERE id = :id';
                 $stmt = $conn->prepare($sql);
-                $stmt->bindParam('id', $id);
+                $stmt->bindParam(':id', $id);
                 $stmt->execute();
                 $verify_result = $stmt -> fetch(pdo::FETCH_ASSOC);
 
