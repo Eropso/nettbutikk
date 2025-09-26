@@ -30,68 +30,39 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($user && password_verify($password, $user['password'])) {
-            $sql = 'SELECT 2fa_enabled FROM users WHERE email = :email';
-            $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':email', $email);
-            $stmt->execute();
-            $verify_result=$stmt->fetch(pdo::FETCH_ASSOC);
-            if ($verify_result['2fa_enabled'] == 1){
-                $verification_code = rand(100000, 999999);
-                $_SESSION['verification_code'] = $verification_code;
-                $_SESSION['email'] = $email;
-                $_SESSION['is_new_user'] = false;
-                $_SESSION['user_id'] = $user['id']; 
 
-                // Send Verification Code via email using PHPMailer
-                $mail = new PHPMailer(true);
-                try {
-                    $mail->isSMTP();
-                    $mail->Host = 'smtp.gmail.com';
-                    $mail->SMTPAuth = true;
-                    $mail->Username = $_ENV['EMAIL_USERNAME'];;
-                    $mail->Password = $_ENV['EMAIL_PASSWORD'];;
-                    $mail->SMTPSecure = 'tls';
-                    $mail->Port = 587;
-        
-                    $mail->setFrom($_ENV['EMAIL_USERNAME'], 'Erosho');
-                    $mail->addAddress($email);
-                    $mail->isHTML(true);
-                    $mail->Subject = 'Verification Code for Erosho Login';
-                    $mail->Body = "Your Verification Code is <b>$verification_code</b>";
-                    $mail->AltBody = "Your Verification Code is $verification_code";
-        
-                    $mail->send();
-        
-                    // Redirect to verification page
+            $verification_code = rand(100000, 999999);
+            $_SESSION['verification_code'] = $verification_code;
+            $_SESSION['email'] = $email;
+            $_SESSION['is_new_user'] = false;
+            $_SESSION['user_id'] = $user['id']; 
 
-                    header("Location: verification.php");
-                    exit();
-                } catch (Exception $e) {
-                    echo "Error: {$mail->ErrorInfo}";
-                }
-            } else{
-                // Set session variables
-                $_SESSION['loggedin'] = true;
-                $_SESSION['user'] = [
-                    'id' => $user['id'],
-                    'email' => $user['email'],
-                    'first_name' => $user['first_name'],
-                    'last_name' => $user['last_name'],
-                    'role' => $user['role']
-                ];
-                unset($_SESSION['verification_code']);
-                unset($_SESSION['email']);
-                unset($_SESSION['is_new_user']);
+            // Send Verification Code via email using PHPMailer
+            $mail = new PHPMailer(true);
+            try {
+                $mail->isSMTP();
+                $mail->Host = 'smtp.gmail.com';
+                $mail->SMTPAuth = true;
+                $mail->Username = $_ENV['EMAIL_USERNAME'];;
+                $mail->Password = $_ENV['EMAIL_PASSWORD'];;
+                $mail->SMTPSecure = 'tls';
+                $mail->Port = 587;
+    
+                $mail->setFrom($_ENV['EMAIL_USERNAME'], 'Erosho');
+                $mail->addAddress($email);
+                $mail->isHTML(true);
+                $mail->Subject = 'Verification Code for Erosho Login';
+                $mail->Body = "Your Verification Code is <b>$verification_code</b>";
+                $mail->AltBody = "Your Verification Code is $verification_code";
+    
+                $mail->send();
+    
+                // Redirect to verification page
 
-
-                if (isset($_SESSION['login-from-cart'])){
-                    header("Location: ../public/checkout.php");
-                    exit();
-                }
-                else{
-                    header('Location: ../index.php');
-                    exit();
-                }
+                header("Location: verification.php");
+                exit();
+            } catch (Exception $e) {
+                echo "Error: {$mail->ErrorInfo}";
             }
 
         } else {
