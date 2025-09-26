@@ -114,7 +114,7 @@ if(isset($_POST["update"])){
             </div>
     </form>
     <?php
-        isset($_SERVER['REQEUST_METHOD'] === 'POST'){
+        if($_SERVER['REQEUST_METHOD'] === 'POST'){
             $twofa_checked = isset($_POST['twofa_checked'] ? 1:0);
             $sql = "UPDATE users SET 2fa_enabled = :twofa_checked WHERE id = :id";
             $stmt = $conn->prepare($sql);
