@@ -135,9 +135,8 @@ if(isset($_POST["update"])){
             <div>
                 <form action="" method='POST'>
                     <label>2FA</label>
-                    <input name='twofa_checked' type="checkbox" <?php echo $verify_result['2fa_enabled'] ? 'checked' : '' ;?>
-                    <button type='submit'>Submit</button>
-
+                    <input name='twofa_checked' type="checkbox" <?php echo $verify_result['2fa_enabled'] ? 'checked' : '' ;?>>
+                    <button type="submit">Save</button>
                 </form>
             </div>
 
